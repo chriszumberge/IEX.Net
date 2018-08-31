@@ -11,6 +11,8 @@ namespace IEX.Net.Converters
             MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
             DateParseHandling = DateParseHandling.None,
             Converters = {
+                DividendQualifiedConverter.Singleton,
+                DividendTypeEnumConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
