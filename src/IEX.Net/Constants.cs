@@ -2,26 +2,20 @@
 {
     internal static class BaseUrls
     {
-        private const string HTTPS_PROTOCOL = "https://";
-        internal const string HOST = "cloud.iexapis.com";
+        internal const string HTTPS_PROTOCOL = "https://";
+        internal const string DOMAIN = "cloud.iexapis.com";
 
-        private const string BASE = HTTPS_PROTOCOL + HOST + "/";
+        internal const string BASE_URL = HTTPS_PROTOCOL + DOMAIN + "/";
 
-        internal const string VERSION_1 = BASE + "v1/";
-        internal const string LATEST = BASE + "latest/";
-        internal const string STABLE = BASE + "stable/";
-        internal const string BETA = BASE + "beta/";
+        internal const string VERSION_1 = BASE_URL + "v1/";
+        internal const string LATEST = BASE_URL + "latest/";
+        internal const string STABLE = BASE_URL + "stable/";
+        internal const string BETA = BASE_URL + "beta/";
     }
 
-    public enum DataRanges
+    internal static class HttpMethods
     {
-        FiveYear,
-        TwoYear,
-        OneYear,
-        YearToDate,
-        SixMonth,
-        ThreeMonth,
-        OneMonth,
-        Next
+        internal const string GET = "GET";
+        internal const string POST = "POST";
     }
 }
