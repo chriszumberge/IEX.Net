@@ -44,8 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Converter.cs" />
+    <Compile Include="Converters\DividendQualifiedConverter.cs" />
+    <Compile Include="Converters\DividendTypeEnumConverter.cs" />
     <Compile Include="IEXClient.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Dividend.cs" />
+    <Compile Include="Models\Symbol.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialize.cs" />
   </ItemGroup>
