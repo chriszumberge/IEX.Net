@@ -17,11 +17,12 @@ namespace IEX.Net.Demo
             //Company company = client.GetCompanyAsync("aapl").Result;
             //List<Dividend> dividends = client.GetDividendAsync("aapl", DataRange.SixMonths).Result;
             //var price = client.GetPriceAsync("aapl").Result;
-            //List<string> peers = client.GetPeersAsync("aapl").Result;
+            //List<string> peers = client.GetPeersAsync("amd").Result;
 
             //var marketVolumes = client.GetMarketVolumeAsync().Result;
             //var news = client.GetNewsAsync("aapl", 5).Result;
-            //var recommendations = client.GetRecommendationsAsync("aapl").Result;
+            var recommendations = client.GetRecommendationsAsync("cprx").Result;
+            var priceTargets = client.GetPriceTargetAsync("cprx").Result;
             //var sectorPerformance = client.GetSectorPerformancesAsync().Result;
 
             Console.ReadLine();

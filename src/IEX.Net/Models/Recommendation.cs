@@ -66,7 +66,7 @@ namespace IEX.Net
         /// </value>
         public DateTime ConsensusStartDateDateTime => ConsensusStartDateOffset.DateTime;
 
-        long _corporateActionsAppliedDate;
+        long? _corporateActionsAppliedDate;
         /// <summary>
         /// Gets or sets the corporate actions applied date value;
         /// </summary>
@@ -74,7 +74,7 @@ namespace IEX.Net
         /// Date through which corporate actions have been applied. Represented as millisecond epoch time.
         /// </value>
         [JsonProperty("corporateActionsAppliedDate")]
-        public long CorporateActionsAppliedDate
+        public long? CorporateActionsAppliedDate
         {
             get { return _corporateActionsAppliedDate; }
             set { SetProperty(ref _corporateActionsAppliedDate, value); }
@@ -85,14 +85,15 @@ namespace IEX.Net
         /// <value>
         /// The corporate actions applied date offset.
         /// </value>
-        public DateTimeOffset CorporateActionsAppliedDateOffset => DateTimeOffset.FromUnixTimeMilliseconds(CorporateActionsAppliedDate);
+        public DateTimeOffset? CorporateActionsAppliedDateOffset => CorporateActionsAppliedDate.HasValue ?
+            (DateTimeOffset?)DateTimeOffset.FromUnixTimeMilliseconds(CorporateActionsAppliedDate.Value) : null;
         /// <summary>
         /// Gets the corporate actions applied date as a <c>DateTime</c>.
         /// </summary>
         /// <value>
         /// The corporate actions applied date date time.
         /// </value>
-        public DateTime CorporateActionsAppliedDateDateTime => CorporateActionsAppliedDateOffset.DateTime;
+        public DateTime? CorporateActionsAppliedDateDateTime => CorporateActionsAppliedDateOffset?.DateTime;
 
         long _ratingBuy;
         /// <summary>

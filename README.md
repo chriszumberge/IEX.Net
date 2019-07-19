@@ -1,6 +1,7 @@
 # IEX.Net
 .Net object-oriented wrapper for the IEX Cloud Api
 
+https://iexcloud.io/console/usage
 https://iexcloud.io/docs/api/
 
 ## Documentations
