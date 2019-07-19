@@ -11,12 +11,12 @@ namespace IEX.Net
     /// <summary>
     /// Client object for making calls to the IEX Cloud.
     /// </summary>
-    public class IEXClient
+    public class IEXClient : IIEXClient
     {
         // TODO SANDBOX IEX CLIENT (https://sandbox.iexapis.com)
         // TODO support streaming (events)
 
-        IEXClientConfig _config;
+        IIEXClientConfig _config;
 
         string _host => _config?.Domain ?? "";
         string _accessKey => _config?.PublicKey ?? "";
@@ -30,7 +30,7 @@ namespace IEX.Net
         /// Initializes a new instance of the <see cref="IEXClient"/> class using the given configuration object.
         /// </summary>
         /// <param name="configuration">The configuration definiton object.</param>
-        public IEXClient(IEXClientConfig configuration)
+        public IEXClient(IIEXClientConfig configuration)
         {
             _config = configuration;
         }
@@ -149,7 +149,17 @@ namespace IEX.Net
         /// <returns>List of SectorPerformance objects for each sector.</returns>
         public Task<List<SectorPerformance>> GetSectorPerformancesAsync()
         {
-            return MakeSignedRequestAsync<List<SectorPerformance>>(HttpMethods.GET, _config.DateTimeProvider.GetDateTime(), $"/stock/market/sector-performance");
+            return MakeSignedRequestAsync<List<SectorPerformance>>(HttpMethods.GET, _config.DateTimeProvider.GetDateTime(), $"stock/market/sector-performance");
+        }
+
+        /// <summary>
+        /// Gets the price target for a company asynchronously.
+        /// </summary>
+        /// <param name="symbol">The symbol to pull price targets for.</param>
+        /// <returns>Price target information.</returns>
+        public Task<PriceTarget> GetPriceTargetAsync(string symbol)
+        {
+            return MakeSignedRequestAsync<PriceTarget>(HttpMethods.GET, _config.DateTimeProvider.GetDateTime(), $"stock/{symbol}/price-target");
         }
 
 

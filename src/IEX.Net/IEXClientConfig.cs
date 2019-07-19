@@ -5,7 +5,7 @@ namespace IEX.Net
     /// <summary>
     /// Object for configuring access to the IEX Cloud.
     /// </summary>
-    public class IEXClientConfig
+    public class IEXClientConfig : IIEXClientConfig
     {
         /// <summary>
         /// Gets the public key.

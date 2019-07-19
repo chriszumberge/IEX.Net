@@ -66,7 +66,7 @@ namespace IEX.Net
             set { SetProperty(ref _open, value); }
         }
 
-        long _openTime;
+        long? _openTime;
         /// <summary>
         /// Gets or sets the open time.
         /// </summary>
@@ -74,7 +74,7 @@ namespace IEX.Net
         /// Refers to the official listing exchange time for the open from the SIP. 15 minute delayed. Represented as millisecond epoch time.
         /// </value>
         [JsonProperty("openTime")]
-        public long OpenTime
+        public long? OpenTime
         {
             get { return _openTime; }
             set { SetProperty(ref _openTime, value); }
@@ -85,16 +85,17 @@ namespace IEX.Net
         /// <value>
         /// The open time offset.
         /// </value>
-        public DateTimeOffset OpenTimeOffset => DateTimeOffset.FromUnixTimeMilliseconds(OpenTime);
+        public DateTimeOffset? OpenTimeOffset => OpenTime.HasValue ?
+            (DateTimeOffset?)DateTimeOffset.FromUnixTimeMilliseconds(OpenTime.Value) : null;
         /// <summary>
         /// Gets the open time as a <c>DateTime</c>.
         /// </summary>
         /// <value>
         /// The open time date time.
         /// </value>
-        public DateTime OpenTimeDateTime => OpenTimeOffset.DateTime;
+        public DateTime? OpenTimeDateTime => OpenTimeOffset?.DateTime;
 
-        double _close;
+        double? _close;
         /// <summary>
         /// Gets or sets the close.
         /// </summary>
@@ -102,13 +103,13 @@ namespace IEX.Net
         /// Refers to the official close price from the SIP. 15 minute delayed.
         /// </value>
         [JsonProperty("close")]
-        public double Close
+        public double? Close
         {
             get { return _close; }
             set { SetProperty(ref _close, value); }
         }
 
-        long _closeTime;
+        long? _closeTime;
         /// <summary>
         /// Gets or sets the close time.
         /// </summary>
@@ -116,7 +117,7 @@ namespace IEX.Net
         /// Refers to the official listing exchange time for the close from the SIP. 15 minute delayed. Represented as millisecond epoch time.
         /// </value>
         [JsonProperty("closeTime")]
-        public long CloseTime
+        public long? CloseTime
         {
             get { return _closeTime; }
             set { SetProperty(ref _closeTime, value); }
@@ -127,14 +128,15 @@ namespace IEX.Net
         /// <value>
         /// The close time offset.
         /// </value>
-        public DateTimeOffset CloseTimeOffset => DateTimeOffset.FromUnixTimeMilliseconds(CloseTime);
+        public DateTimeOffset? CloseTimeOffset => CloseTime.HasValue ?
+            (DateTimeOffset?)DateTimeOffset.FromUnixTimeMilliseconds(CloseTime.Value) : null;
         /// <summary>
         /// Gets the close time as a <c>DateTime</c>.
         /// </summary>
         /// <value>
         /// The close time date time.
         /// </value>
-        public DateTime CloseTimeDateTime => CloseTimeOffset.DateTime;
+        public DateTime? CloseTimeDateTime => CloseTimeOffset?.DateTime;
 
         double? _high;
         /// <summary>
@@ -164,7 +166,7 @@ namespace IEX.Net
             set { SetProperty(ref _low, value); }
         }
 
-        double _latestPrice;
+        double? _latestPrice;
         /// <summary>
         /// Gets or sets the latest price.
         /// </summary>
@@ -181,7 +183,7 @@ namespace IEX.Net
         /// This will not included pre or post market prices.
         /// </value>
         [JsonProperty("latestPrice")]
-        public double LatestPrice
+        public double? LatestPrice
         {
             get { return _latestPrice; }
             set { SetProperty(ref _latestPrice, value); }
@@ -218,7 +220,7 @@ namespace IEX.Net
             set { SetProperty(ref _latestTime, value); }
         }
 
-        long _latestUpdate;
+        long? _latestUpdate;
         /// <summary>
         /// Gets or sets the latest update.
         /// </summary>
@@ -226,7 +228,7 @@ namespace IEX.Net
         /// Refers to the machine readable epoch timestamp of when latestPrice was last updated. Represented as millisecond epoch time.
         /// </value>
         [JsonProperty("latestUpdate")]
-        public long LatestUpdate
+        public long? LatestUpdate
         {
             get { return _latestUpdate; }
             set { SetProperty(ref _latestUpdate, value); }
@@ -237,17 +239,18 @@ namespace IEX.Net
         /// <value>
         /// The latest update offset.
         /// </value>
-        public DateTimeOffset LatestUpdateOffset => DateTimeOffset.FromUnixTimeMilliseconds(LatestUpdate);
+        public DateTimeOffset? LatestUpdateOffset => LatestUpdate.HasValue ?
+            (DateTimeOffset?)DateTimeOffset.FromUnixTimeMilliseconds(LatestUpdate.Value) : null;
         /// <summary>
         /// Gets the latest update as a <c>DateTime</c>.
         /// </summary>
         /// <value>
         /// The latest update date time.
         /// </value>
-        public DateTime LatestUpdateDateTime => LatestUpdateOffset.DateTime;
+        public DateTime? LatestUpdateDateTime => LatestUpdateOffset?.DateTime;
              
 
-        long _latestVolume;
+        long? _latestVolume;
         /// <summary>
         /// Gets or sets the latest volume.
         /// </summary>
@@ -258,13 +261,13 @@ namespace IEX.Net
         /// This will be the most recent volume of the stock during trading hours, or it will be the total volume of the last available trading day.
         /// </value>
         [JsonProperty("latestVolume")]
-        public long LatestVolume
+        public long? LatestVolume
         {
             get { return _latestVolume; }
             set { SetProperty(ref _latestVolume, value); }
         }
 
-        double _iexRealtimePrice;
+        double? _iexRealtimePrice;
         /// <summary>
         /// Gets or sets the iex realtime price.
         /// </summary>
@@ -272,13 +275,13 @@ namespace IEX.Net
         /// Refers to the price of the last trade on IEX.
         /// </value>
         [JsonProperty("iexRealtimePrice")]
-        public double IexRealtimePrice
+        public double? IexRealtimePrice
         {
             get { return _iexRealtimePrice; }
             set { SetProperty(ref _iexRealtimePrice, value); }
         }
 
-        long _iexRealtimeSize;
+        long? _iexRealtimeSize;
         /// <summary>
         /// Gets or sets the size of the iex realtime.
         /// </summary>
@@ -286,13 +289,13 @@ namespace IEX.Net
         /// Refers to the size of the last trade on IEX.
         /// </value>
         [JsonProperty("iexRealtimeSize")]
-        public long IexRealtimeSize
+        public long? IexRealtimeSize
         {
             get { return _iexRealtimeSize; }
             set { SetProperty(ref _iexRealtimeSize, value); }
         }
 
-        long _iexLastUpdated;
+        long? _iexLastUpdated;
         /// <summary>
         /// Gets or sets the iex last updated.
         /// </summary>
@@ -301,7 +304,7 @@ namespace IEX.Net
         /// If the value is -1 or 0, IEX has not quoted the symbol in the trading day.
         /// </value>
         [JsonProperty("iexLastUpdated")]
-        public long IexLastUpdated
+        public long? IexLastUpdated
         {
             get { return _iexLastUpdated; }
             set { SetProperty(ref _iexLastUpdated, value); }
@@ -313,7 +316,8 @@ namespace IEX.Net
         /// The iex last updated offest.
         /// If the value is null, IEX has not quoted the symbol in the trading day.
         /// </value>
-        public DateTimeOffset? IexLastUpdatedOffest => IexLastUpdated <= 0 ? null : new DateTimeOffset?(DateTimeOffset.FromUnixTimeMilliseconds(IexLastUpdated));
+        public DateTimeOffset? IexLastUpdatedOffest => (!IexLastUpdated.HasValue || IexLastUpdated.Value <= 0) 
+            ? null : new DateTimeOffset?(DateTimeOffset.FromUnixTimeMilliseconds(IexLastUpdated.Value));
         /// <summary>
         /// Gets the iex last updated value as a <c>DateTime</c>.
         /// </summary>
@@ -323,7 +327,7 @@ namespace IEX.Net
         /// </value>
         public DateTime? IexLastUpdatedDateTime => IexLastUpdated <= 0 ? null : new DateTime?(IexLastUpdatedOffest.Value.DateTime);
 
-        double _delayedPrice;
+        double? _delayedPrice;
         /// <summary>
         /// Gets or sets the delayed price.
         /// </summary>
@@ -331,13 +335,13 @@ namespace IEX.Net
         /// Refers to the 15 minute delayed market price from the SIP during normal market hours 9:30 - 16:00 ET.
         /// </value>
         [JsonProperty("delayedPrice")]
-        public double DelayedPrice
+        public double? DelayedPrice
         {
             get { return _delayedPrice; }
             set { SetProperty(ref _delayedPrice, value); }
         }
 
-        long _delayedPriceTime;
+        long? _delayedPriceTime;
         /// <summary>
         /// Gets or sets the delayed price time.
         /// </summary>
@@ -345,7 +349,7 @@ namespace IEX.Net
         /// Refers to the last update time of the delayed market price during normal market hours 9:30 - 16:00 ET.
         /// </value>
         [JsonProperty("delayedPriceTime")]
-        public long DelayedPriceTime
+        public long? DelayedPriceTime
         {
             get { return _delayedPriceTime; }
             set { SetProperty(ref _delayedPriceTime, value); }
@@ -356,16 +360,17 @@ namespace IEX.Net
         /// <value>
         /// The delayed price time offset.
         /// </value>
-        public DateTimeOffset DelayedPriceTimeOffset => DateTimeOffset.FromUnixTimeMilliseconds(DelayedPriceTime);
+        public DateTimeOffset? DelayedPriceTimeOffset => DelayedPriceTime.HasValue ? 
+            (DateTimeOffset?)DateTimeOffset.FromUnixTimeMilliseconds(DelayedPriceTime.Value) : null;
         /// <summary>
         /// Gets the delayed price time as a <c>DateTime</c>.
         /// </summary>
         /// <value>
         /// The delayed price time date time.
         /// </value>
-        public DateTime DelayedPriceTimeDateTime => DelayedPriceTimeOffset.DateTime;
+        public DateTime? DelayedPriceTimeDateTime => DelayedPriceTimeOffset?.DateTime;
 
-        double _extendedPrice;
+        double? _extendedPrice;
         /// <summary>
         /// Gets or sets the extended price.
         /// </summary>
@@ -375,13 +380,13 @@ namespace IEX.Net
         /// This is purposefully separate from latestPrice so users can display the two prices separately.
         /// </value>
         [JsonProperty("extendedPrice")]
-        public double ExtendedPrice
+        public double? ExtendedPrice
         {
             get { return _extendedPrice; }
             set { SetProperty(ref _extendedPrice, value); }
         }
 
-        double _extendedChange;
+        double? _extendedChange;
         /// <summary>
         /// Gets or sets the extended change.
         /// </summary>
@@ -389,13 +394,13 @@ namespace IEX.Net
         /// Refers to the price change between extendedPrice and latestPrice.
         /// </value>
         [JsonProperty("extendedChange")]
-        public double ExtendedChange
+        public double? ExtendedChange
         {
             get { return _extendedChange; }
             set { SetProperty(ref _extendedChange, value); }
         }
 
-        double _extendedChangePercent;
+        double? _extendedChangePercent;
         /// <summary>
         /// Gets or sets the extended change percent.
         /// </summary>
@@ -403,13 +408,13 @@ namespace IEX.Net
         /// Refers to the price change percent between extendedPrice and latestPrice.
         /// </value>
         [JsonProperty("extendedChangePercent")]
-        public double ExtendedChangePercent
+        public double? ExtendedChangePercent
         {
             get { return _extendedChangePercent; }
             set { SetProperty(ref _extendedChangePercent, value); }
         }
 
-        long _extendedPriceTime;
+        long? _extendedPriceTime;
         /// <summary>
         /// Gets or sets the extended price time.
         /// </summary>
@@ -417,7 +422,7 @@ namespace IEX.Net
         /// Refers to the last update time of extendedPrice.
         /// </value>
         [JsonProperty("extendedPriceTime")]
-        public long ExtendedPriceTime
+        public long? ExtendedPriceTime
         {
             get { return _extendedPriceTime; }
             set { SetProperty(ref _extendedPriceTime, value); }
@@ -428,16 +433,17 @@ namespace IEX.Net
         /// <value>
         /// The extended price time offset.
         /// </value>
-        public DateTimeOffset ExtendedPriceTimeOffset => DateTimeOffset.FromUnixTimeMilliseconds(ExtendedPriceTime);
+        public DateTimeOffset? ExtendedPriceTimeOffset => ExtendedPriceTime.HasValue ?
+            (DateTimeOffset?)DateTimeOffset.FromUnixTimeMilliseconds(ExtendedPriceTime.Value) : null;
         /// <summary>
         /// Gets the extended price time as a <c>DateTime</c>.
         /// </summary>
         /// <value>
         /// The extended price time date time.
         /// </value>
-        public DateTime ExtendedPriceTimeDateTime => ExtendedPriceTimeOffset.DateTime;
+        public DateTime? ExtendedPriceTimeDateTime => ExtendedPriceTimeOffset?.DateTime;
 
-        double _previousClose;
+        double? _previousClose;
         /// <summary>
         /// Gets or sets the previous close.
         /// </summary>
@@ -445,13 +451,13 @@ namespace IEX.Net
         /// Referes to the previous close value.
         /// </value>
         [JsonProperty("previousClose")]
-        public double PreviousClose
+        public double? PreviousClose
         {
             get { return _previousClose; }
             set { SetProperty(ref _previousClose, value); }
         }
 
-        double _change;
+        double?_change;
         /// <summary>
         /// Gets or sets the change.
         /// </summary>
@@ -459,13 +465,13 @@ namespace IEX.Net
         /// Refers to the change in price between latestPrice and previousClose.
         /// </value>
         [JsonProperty("change")]
-        public double Change
+        public double? Change
         {
             get { return _change; }
             set { SetProperty(ref _change, value); }
         }
 
-        double _changePercent;
+        double? _changePercent;
         /// <summary>
         /// Gets or sets the change percent.
         /// </summary>
@@ -474,13 +480,13 @@ namespace IEX.Net
         /// For example, a 5% change would be represented as 0.05.
         /// </value>
         [JsonProperty("changePercent")]
-        public double ChangePercent
+        public double? ChangePercent
         {
             get { return _changePercent; }
             set { SetProperty(ref _changePercent, value); }
         }
 
-        double _iexMarketPercent;
+        double? _iexMarketPercent;
         /// <summary>
         /// Gets or sets the iex market percent.
         /// </summary>
@@ -488,13 +494,13 @@ namespace IEX.Net
         /// Refers to IEX’s percentage of the market in the stock.
         /// </value>
         [JsonProperty("iexMarketPercent")]
-        public double IexMarketPercent
+        public double? IexMarketPercent
         {
             get { return _iexMarketPercent; }
             set { SetProperty(ref _iexMarketPercent, value); }
         }
 
-        long _iexVolume;
+        long? _iexVolume;
         /// <summary>
         /// Gets or sets the iex volume.
         /// </summary>
@@ -502,13 +508,13 @@ namespace IEX.Net
         /// Refers to shares traded in the stock on IEX.
         /// </value>
         [JsonProperty("iexVolume")]
-        public long IexVolume
+        public long? IexVolume
         {
             get { return _iexVolume; }
             set { SetProperty(ref _iexVolume, value); }
         }
 
-        long _avgTotalVolume;
+        long? _avgTotalVolume;
         /// <summary>
         /// Gets or sets the average total volume.
         /// </summary>
@@ -516,13 +522,13 @@ namespace IEX.Net
         /// Refers to the 30 day average volume.
         /// </value>
         [JsonProperty("avgTotalVolume")]
-        public long AvgTotalVolume
+        public long? AvgTotalVolume
         {
             get { return _avgTotalVolume; }
             set { SetProperty(ref _avgTotalVolume, value); }
         }
 
-        double _iexBidPrice;
+        double? _iexBidPrice;
         /// <summary>
         /// Gets or sets the iex bid price.
         /// </summary>
@@ -530,13 +536,13 @@ namespace IEX.Net
         /// Refers to the best bid price on IEX.
         /// </value>
         [JsonProperty("iexBidPrice")]
-        public double IexBidPrice
+        public double? IexBidPrice
         {
             get { return _iexBidPrice; }
             set { SetProperty(ref _iexBidPrice, value); }
         }
 
-        long _iexBidSize;
+        long? _iexBidSize;
         /// <summary>
         /// Gets or sets the size of the iex bid.
         /// </summary>
@@ -544,13 +550,13 @@ namespace IEX.Net
         /// Refers to amount of shares on the bid on IEX.
         /// </value>
         [JsonProperty("iexBidSize")]
-        public long IexBidSize
+        public long? IexBidSize
         {
             get { return _iexBidSize; }
             set { SetProperty(ref _iexBidSize, value); }
         }
 
-        double _iexAskPrice;
+        double? _iexAskPrice;
         /// <summary>
         /// Gets or sets the iex ask price.
         /// </summary>
@@ -558,13 +564,13 @@ namespace IEX.Net
         /// Refers to the best ask price on IEX.
         /// </value>
         [JsonProperty("iexAskPrice")]
-        public double IexAskPrice
+        public double? IexAskPrice
         {
             get { return _iexAskPrice; }
             set { SetProperty(ref _iexAskPrice, value); }
         }
 
-        long _iexAskSize;
+        long? _iexAskSize;
         /// <summary>
         /// Gets or sets the size of the iex ask.
         /// </summary>
@@ -572,13 +578,13 @@ namespace IEX.Net
         /// Refers to amount of shares on the ask on IEX.
         /// </value>
         [JsonProperty("iexAskSize")]
-        public long IexAskSize
+        public long? IexAskSize
         {
             get { return _iexAskSize; }
             set { SetProperty(ref _iexAskSize, value); }
         }
 
-        long _marketCap;
+        long? _marketCap;
         /// <summary>
         /// Gets or sets the market cap.
         /// </summary>
@@ -586,13 +592,13 @@ namespace IEX.Net
         /// Is calculated in real time using latestPrice.
         /// </value>
         [JsonProperty("marketCap")]
-        public long MarketCap
+        public long? MarketCap
         {
             get { return _marketCap; }
             set { SetProperty(ref _marketCap, value); }
         }
 
-        double _peRatio;
+        double? _peRatio;
         /// <summary>
         /// Gets or sets the pe ratio.
         /// </summary>
@@ -600,13 +606,13 @@ namespace IEX.Net
         /// Refers to the latest price to earnings ratio.
         /// </value>
         [JsonProperty("peRatio")]
-        public double PeRatio
+        public double? PeRatio
         {
             get { return _peRatio; }
             set { SetProperty(ref _peRatio, value); }
         }
 
-        double _week52High;
+        double? _week52High;
         /// <summary>
         /// Gets or sets the week52 high.
         /// </summary>
@@ -614,13 +620,13 @@ namespace IEX.Net
         /// Refers to the adjusted 52 week high.
         /// </value>
         [JsonProperty("week52High")]
-        public double Week52High
+        public double? Week52High
         {
             get { return _week52High; }
             set { SetProperty(ref _week52High, value); }
         }
 
-        double _week52Low;
+        double? _week52Low;
         /// <summary>
         /// Gets or sets the week52 low.
         /// </summary>
@@ -628,13 +634,13 @@ namespace IEX.Net
         /// Refers to the adjusted 52 week low.
         /// </value>
         [JsonProperty("week52Low")]
-        public double Week52Low
+        public double? Week52Low
         {
             get { return _week52Low; }
             set { SetProperty(ref _week52Low, value); }
         }
 
-        double _ytdChange;
+        double? _ytdChange;
         /// <summary>
         /// Gets or sets the ytd change.
         /// </summary>
@@ -642,7 +648,7 @@ namespace IEX.Net
         /// Refers to the price change percentage from start of year to previous close.
         /// </value>
         [JsonProperty("ytdChange")]
-        public double YtdChange
+        public double? YtdChange
         {
             get { return _ytdChange; }
             set { SetProperty(ref _ytdChange, value); }

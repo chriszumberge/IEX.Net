@@ -159,7 +159,7 @@ namespace IEX.Net
             set { SetProperty(ref _sector, value); }
         }
 
-        long _employees;
+        Nullable<long> _employees;
         /// <summary>
         /// Gets or sets the employees.
         /// </summary>
@@ -167,7 +167,7 @@ namespace IEX.Net
         /// The number of employees.
         /// </value>
         [JsonProperty("employees")]
-        public long Employees
+        public Nullable<long> Employees
         {
             get { return _employees; }
             set { SetProperty(ref _employees, value); }
